@@ -53,3 +53,5 @@ vitest.config.*.timestamp*
 # Env files
 .env
 .env.*
+
+/.history

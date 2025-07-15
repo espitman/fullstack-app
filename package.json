@@ -2,7 +2,9 @@
   "name": "@my-fullstack-app/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev": "nx run-many --target=serve --projects=api,client --parallel"
+  },
   "private": true,
   "devDependencies": {
     "@eslint/js": "^9.8.0",
