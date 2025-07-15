@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.base.json",
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "../shared-dtos"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
+}
