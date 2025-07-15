@@ -1,0 +1,39 @@
+{
+  "name": "@my-fullstack-app/shared-dtos",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./dist/src/index.js",
+  "module": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js",
+      "default": "./dist/src/index.js"
+    }
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "nx": {
+    "targets": {
+      "build": {
+        "executor": "@nx/js:tsc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "dist/shared-dtos",
+          "tsConfig": "shared-dtos/tsconfig.lib.json",
+          "packageJson": "shared-dtos/package.json",
+          "main": "shared-dtos/src/index.ts",
+          "assets": [
+            "shared-dtos/*.md"
+          ]
+        }
+      }
+    }
+  }
+}
