@@ -1,13 +1,46 @@
 import { StrictMode } from 'react';
-import * as ReactDOM from 'react-dom/client';
-import App from './app/app';
+import ReactDOM from 'react-dom/client';
+import { RouterProvider, createRouter, createRootRoute, createRoute, Outlet } from '@tanstack/react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import TaskList from './routes/index';
+import TaskDetail from './routes/tasks/$id';
+import './styles.css';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const queryClient = new QueryClient();
 
+const rootRoute = createRootRoute({
+  component: () => <Outlet />,
+});
+
+const taskListRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/',
+  component: TaskList,
+});
+
+const taskDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/tasks/$id',
+  component: TaskDetail,
+});
+
+const routeTree = rootRoute.addChildren([taskListRoute, taskDetailRoute]);
+const router = createRouter({ routeTree });
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
+}
+
+const rootElement = document.getElementById('root');
+if (rootElement && !rootElement.innerHTML) {
+  const root = ReactDOM.createRoot(rootElement);
 root.render(
   <StrictMode>
-    <App />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
   </StrictMode>
 );
+}

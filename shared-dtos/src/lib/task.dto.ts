@@ -5,6 +5,7 @@ export class TaskDto {
   title!: string;
   isDone!: boolean;
   date!: string; // ISO8601 string
+  description?: string;
 }
 
 export class CreateTaskDto {
@@ -16,4 +17,8 @@ export class CreateTaskDto {
   @IsOptional()
   @IsISO8601()
   date?: string;
+
+  @IsOptional()
+  @IsString()
+  description?: string;
 } 

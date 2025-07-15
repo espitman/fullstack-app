@@ -1,10 +1,16 @@
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { TaskDto, CreateTaskDto } from '@my-fullstack-app/shared-dtos';
 import { useApiQuery, useApiMutation } from '../hook/useApiService';
 
-export function App() {
+export const Route = createFileRoute()({
+  component: TaskList,
+});
+
+function TaskList() {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
+  const [description, setDescription] = useState('');
 
   // Query for tasks
   const {
@@ -29,12 +35,12 @@ export function App() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    createTaskMutation.mutate({ title, ...(date ? { date } : {}) });
+    createTaskMutation.mutate({ title, ...(date ? { date } : {}), ...(description ? { description } : {}) });
   };
 
   return (
     <div style={{ maxWidth: 500, margin: '2rem auto', fontFamily: 'sans-serif' }}>
-      <h1>Task List</h1>
+      <h1>Task Lists</h1>
       <form onSubmit={handleSubmit} style={{ marginBottom: 24 }}>
         <input
           type="text"
@@ -51,6 +57,13 @@ export function App() {
           onChange={(e) => setDate(e.target.value)}
           style={{ padding: 8, width: '35%', marginLeft: 8 }}
         />
+        <input
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Description (optional)"
+          style={{ padding: 8, width: '100%', marginTop: 8 }}
+        />
         <button type="submit" disabled={createTaskMutation.status === 'pending'} style={{ padding: 8, marginLeft: 8 }}>
           Add Task
         </button>
@@ -65,9 +78,9 @@ export function App() {
               key={task.id}
               style={{ textDecoration: task.isDone ? 'line-through' : 'none', marginBottom: 8 }}
             >
-              <a href={`#/tasks/${task.id}`} style={{ color: 'inherit', textDecoration: 'underline', cursor: 'pointer' }}>
+              <Link to={`/tasks/${task.id}`} style={{ color: 'inherit', textDecoration: 'underline', cursor: 'pointer' }}>
                 {task.title}
-              </a>
+              </Link>
               {task.date && (
                 <span style={{ color: '#888', fontSize: 12, marginLeft: 8 }}>
                   {new Date(task.date).toLocaleDateString()}
@@ -81,4 +94,4 @@ export function App() {
   );
 }
 
-export default App;
+export default TaskList; 

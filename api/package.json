@@ -2,6 +2,9 @@
   "name": "@my-fullstack-app/api",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "dev": "nx serve"
+  },
   "nx": {
     "targets": {
       "build": {
