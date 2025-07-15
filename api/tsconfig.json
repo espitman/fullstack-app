@@ -4,9 +4,6 @@
   "include": [],
   "references": [
     {
-      "path": "../shared-dtos"
-    },
-    {
       "path": "./tsconfig.app.json"
     }
   ]

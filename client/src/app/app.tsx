@@ -4,6 +4,7 @@ import { TaskDto, CreateTaskDto } from '@my-fullstack-app/shared-dtos';
 export function App() {
   const [tasks, setTasks] = useState<TaskDto[]>([]);
   const [title, setTitle] = useState('');
+  const [date, setDate] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -18,6 +19,7 @@ export function App() {
     setError(null);
     setLoading(true);
     const newTask: CreateTaskDto = { title };
+    if (date) newTask.date = date;
     try {
       const res = await fetch('/api/tasks', {
         method: 'POST',
@@ -31,6 +33,7 @@ export function App() {
         const created = await res.json();
         setTasks((prev) => [...prev, created]);
         setTitle('');
+        setDate('');
       }
     } catch (err) {
       setError('Network error');
@@ -50,7 +53,13 @@ export function App() {
           placeholder="Task title"
           minLength={3}
           required
-          style={{ padding: 8, width: '70%' }}
+          style={{ padding: 8, width: '50%' }}
+        />
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          style={{ padding: 8, width: '35%', marginLeft: 8 }}
         />
         <button type="submit" disabled={loading} style={{ padding: 8, marginLeft: 8 }}>
           Add Task
@@ -59,8 +68,13 @@ export function App() {
       {error && <div style={{ color: 'red', marginBottom: 16 }}>{error}</div>}
       <ul>
         {tasks.map((task) => (
-          <li key={task.id} style={{ textDecoration: task.isDone ? 'line-through' : 'none' }}>
-            {task.title}
+          <li key={task.id} style={{ textDecoration: task.isDone ? 'line-through' : 'none', marginBottom: 8 }}>
+            <span>{task.title}</span>
+            {task.date && (
+              <span style={{ color: '#888', fontSize: 12, marginLeft: 8 }}>
+                {new Date(task.date).toLocaleDateString()}
+              </span>
+            )}
           </li>
         ))}
       </ul>
