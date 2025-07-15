@@ -40,7 +40,7 @@ function TaskList() {
 
   return (
     <div className="max-w-xl mx-auto my-8 font-sans">
-      <h1>Task Lists</h1>
+      <h1 className='font-bold mb-3 text-xl'>Task Lists</h1>
       <form onSubmit={handleSubmit} className="mb-6">
         <input
           type="text"
