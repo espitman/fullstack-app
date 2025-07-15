@@ -68,7 +68,7 @@ function TaskList() {
           Add Task
         </button>
       </form>
-      {error && <div style={{ color: 'red', marginBottom: 16 }}>{(error as any).message}</div>}
+      {error && <div style={{ color: 'red', marginBottom: 16 }}>{error.message}</div>}
       {isLoading ? (
         <div>Loading...</div>
       ) : (
@@ -78,7 +78,7 @@ function TaskList() {
               key={task.id}
               style={{ textDecoration: task.isDone ? 'line-through' : 'none', marginBottom: 8 }}
             >
-              <Link to={`/tasks/${task.id}`} style={{ color: 'inherit', textDecoration: 'underline', cursor: 'pointer' }}>
+              <Link to="/tasks/$id" params={{ id: String(task.id) }} style={{ color: 'inherit', textDecoration: 'underline', cursor: 'pointer' }}>
                 {task.title}
               </Link>
               {task.date && (
