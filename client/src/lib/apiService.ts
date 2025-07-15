@@ -1,10 +1,10 @@
-// ApiError و apiService بدون zod
 
-export interface ApiServiceOptions<TRequestBody> {
+interface ApiServiceOptions<TRequestBody> {
   method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   queryParams?: Record<string, string | number | boolean | undefined>;
   body?: TRequestBody;
   headers?: Record<string, string>;
+  // No explicit endpoint prop here, url is the first argument
 }
 
 export class ApiError extends Error {
@@ -21,12 +21,12 @@ export class ApiError extends Error {
 }
 
 export async function apiService<TResponseData, TRequestBody = unknown>(
-  url: string, // e.g., '/tasks'
+  url: string, // e.g., '/accommodations'
   options: ApiServiceOptions<TRequestBody> = {}
 ): Promise<TResponseData> {
   const { method = 'GET', queryParams, body, headers = {} } = options;
 
-  let fullUrl = `/api${url}`;
+  let fullUrl = `/api/v1${url}`;
 
   if (queryParams) {
     const params = new URLSearchParams();
@@ -60,6 +60,7 @@ export async function apiService<TResponseData, TRequestBody = unknown>(
       try {
         errorData = await response.json();
       } catch (e) {
+        // If response is not JSON or empty
         errorData = { message: response.statusText };
       }
       throw new ApiError(
@@ -69,9 +70,9 @@ export async function apiService<TResponseData, TRequestBody = unknown>(
       );
     }
 
+    // Handle cases like 204 No Content for DELETE, where response.json() would fail
     if (response.status === 204 || response.headers.get("content-length") === "0") {
-      // No content
-      return undefined as TResponseData;
+        return undefined as TResponseData;
     }
 
     return await response.json();
@@ -79,6 +80,7 @@ export async function apiService<TResponseData, TRequestBody = unknown>(
     if (error instanceof ApiError) {
       throw error;
     }
+    console.error('Network or unexpected error in apiService:', error);
     throw new ApiError(error instanceof Error ? error.message : 'An unknown network error occurred', 0, error);
   }
 } 
