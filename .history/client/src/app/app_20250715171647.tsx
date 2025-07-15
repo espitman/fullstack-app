@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { TaskDto, CreateTaskDto } from '@my-fullstack-app/shared-dtos';
-import { apiService, ApiError } from '../lib/apiService';
 
 export function App() {
   const [tasks, setTasks] = useState<TaskDto[]>([]);
@@ -10,9 +9,9 @@ export function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    apiService<TaskDto[]>('/tasks')
-      .then(setTasks)
-      .catch((err) => setError(err.message));
+    fetch('/api/tasks')
+      .then((res) => res.json())
+      .then(setTasks);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,15 +21,22 @@ export function App() {
     const newTask: CreateTaskDto = { title };
     if (date) newTask.date = date;
     try {
-      const created = await apiService<TaskDto, CreateTaskDto>('/tasks', {
+      const res = await fetch('/api/tasks', {
         method: 'POST',
-        body: newTask,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newTask),
       });
-      setTasks((prev) => [...prev, created]);
-      setTitle('');
-      setDate('');
-    } catch (err: any) {
-      setError(err.message || 'Network error');
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.message || 'Validation error');
+      } else {
+        const created = await res.json();
+        setTasks((prev) => [...prev, created]);
+        setTitle('');
+        setDate('');
+      }
+    } catch (err) {
+      setError('Network error');
     } finally {
       setLoading(false);
     }
@@ -62,13 +68,8 @@ export function App() {
       {error && <div style={{ color: 'red', marginBottom: 16 }}>{error}</div>}
       <ul>
         {tasks.map((task) => (
-          <li
-            key={task.id}
-            style={{ textDecoration: task.isDone ? 'line-through' : 'none', marginBottom: 8 }}
-          >
-            <a href={`#/tasks/${task.id}`} style={{ color: 'inherit', textDecoration: 'underline', cursor: 'pointer' }}>
-              {task.title}
-            </a>
+          <li key={task.id} style={{ textDecoration: task.isDone ? 'line-through' : 'none', marginBottom: 8 }}>
+            <span>{task.title}</span>
             {task.date && (
               <span style={{ color: '#888', fontSize: 12, marginLeft: 8 }}>
                 {new Date(task.date).toLocaleDateString()}

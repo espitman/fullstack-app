@@ -1,5 +1,10 @@
 {
   "name": "@my-fullstack-app/client",
   "version": "0.0.1",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@tanstack/react-query": "^5.83.0",
+    "@tanstack/react-router": "^1.127.8",
+    "zod": "^4.0.5"
+  }
 }
