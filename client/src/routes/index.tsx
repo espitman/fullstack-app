@@ -39,9 +39,9 @@ function TaskList() {
   };
 
   return (
-    <div style={{ maxWidth: 500, margin: '2rem auto', fontFamily: 'sans-serif' }}>
+    <div className="max-w-xl mx-auto my-8 font-sans">
       <h1>Task Lists</h1>
-      <form onSubmit={handleSubmit} style={{ marginBottom: 24 }}>
+      <form onSubmit={handleSubmit} className="mb-6">
         <input
           type="text"
           value={title}
@@ -49,26 +49,26 @@ function TaskList() {
           placeholder="Task title"
           minLength={3}
           required
-          style={{ padding: 8, width: '50%' }}
+          className="p-2 w-1/2 border rounded"
         />
         <input
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          style={{ padding: 8, width: '35%', marginLeft: 8 }}
+          className="p-2 w-1/3 ml-2 border rounded"
         />
         <input
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Description (optional)"
-          style={{ padding: 8, width: '100%', marginTop: 8 }}
+          className="p-2 w-full mt-2 border rounded"
         />
-        <button type="submit" disabled={createTaskMutation.status === 'pending'} style={{ padding: 8, marginLeft: 8 }}>
+        <button type="submit" disabled={createTaskMutation.status === 'pending'} className="p-2 mt-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50">
           Add Task
         </button>
       </form>
-      {error && <div style={{ color: 'red', marginBottom: 16 }}>{error.message}</div>}
+      {error && <div className="text-red-600 mb-4">{error.message}</div>}
       {isLoading ? (
         <div>Loading...</div>
       ) : (
@@ -76,13 +76,17 @@ function TaskList() {
           {tasks.map((task) => (
             <li
               key={task.id}
-              style={{ textDecoration: task.isDone ? 'line-through' : 'none', marginBottom: 8 }}
+              className={`mb-3 ${task.isDone ? 'line-through text-gray-400' : ''}`}
             >
-              <Link to="/tasks/$id" params={{ id: String(task.id) }} style={{ color: 'inherit', textDecoration: 'underline', cursor: 'pointer' }}>
+              <Link
+                to="/tasks/$id"
+                params={{ id: String(task.id) }}
+                className="text-blue-700 underline cursor-pointer hover:text-blue-900"
+              >
                 {task.title}
               </Link>
               {task.date && (
-                <span style={{ color: '#888', fontSize: 12, marginLeft: 8 }}>
+                <span className="text-gray-500 text-xs ml-2">
                   {new Date(task.date).toLocaleDateString()}
                 </span>
               )}
