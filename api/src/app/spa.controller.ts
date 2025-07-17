@@ -11,5 +11,6 @@ export class SpaController {
       return res.status(404).send('Not Found');
     }
     res.sendFile(join(__dirname, '../../client/dist/index.html'));
+    return;
   }
 } 
