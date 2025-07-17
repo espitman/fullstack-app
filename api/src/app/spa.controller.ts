@@ -4,13 +4,17 @@ import { join } from 'path';
 import type { Request, Response } from 'express';
 import { existsSync } from 'fs';
 import type { Cache } from '@nestjs/cache-manager';
+import { ConfigService } from '@nestjs/config';
 
 // Simple bot detection regex
 const botUserAgentRegex = /bot|crawl|slurp|spider|mediapartners|google|bing|yandex|baidu|duckduckbot|facebot|twitterbot|applebot|petalbot/i;
 
 @Controller()
 export class SpaController {
-  constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
+  constructor(
+    @Inject(CACHE_MANAGER) private cacheManager: Cache, 
+    private configService: ConfigService
+  ) {}
   
   @Get('*')
   async serveSpa(@Req() req: Request, @Res() res: Response) {
@@ -45,7 +49,8 @@ export class SpaController {
           html = await page.content();
           await browser.close();
           if (html && html.includes('<html')) {
-            await this.cacheManager.set(cacheKey, html, 60 * 5 * 1000); // cache for 5 minutes
+            const ttl = this.configService.get<number>('SSR_CACHE_TTL', 300); // default 300 seconds
+            await this.cacheManager.set(cacheKey, html, ttl);
           }
         } catch (err) {
           console.error('Puppeteer SSR error:', err);
