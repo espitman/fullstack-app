@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Param, NotFoundException } from '@nestjs/common';
 import { type TaskDto, type CreateTaskDto } from '@my-fullstack-app/shared-dtos';
 
-@Controller('v1/tasks')
+@Controller('api/v1/tasks')
 export class TasksController {
   private readonly tasks: TaskDto[] = [
     { id: 1, title: 'Setup the monorepo', isDone: true, date: new Date().toISOString(), description: 'Initialize the monorepo structure.' },
