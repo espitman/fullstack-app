@@ -94,6 +94,10 @@ function TaskList() {
           ))}
         </ul>
       )}
+      {/* Move the About link to the bottom of the page */}
+      <div className="mt-8 text-center">
+        <Link to="/about/project" className="text-blue-600 hover:underline">About the Project</Link>
+      </div>
     </div>
   );
 }
