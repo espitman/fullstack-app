@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "pnpm -r dev",
-    "start:prod": "pnpm --filter @my-fullstack-app/client build && pnpm --filter @my-fullstack-app/api build && pnpm --filter @my-fullstack-app/api serve"
+    "start:dev": "pnpm -r dev",
+    "start:prod": "pnpm --filter @my-fullstack-app/client build && pnpm --filter @my-fullstack-app/api build && pnpm --filter @my-fullstack-app/api serve",
+    "start:api": "pnpm --filter @my-fullstack-app/api build && pnpm --filter @my-fullstack-app/api serve"
   },
   "private": true,
   "devDependencies": {
