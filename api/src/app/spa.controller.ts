@@ -30,7 +30,11 @@ export class SpaController {
         const puppeteer = await import('puppeteer');
         const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
         const page = await browser.newPage();
-        await page.goto(`http://localhost:${process.env.PORT || 3000}${req.originalUrl}`, { waitUntil: 'networkidle0' });
+        // Dynamically determine the base URL from the request
+        const protocol = req.protocol || (req.headers['x-forwarded-proto'] as string) || 'http';
+        const host = req.get('host');
+        const fullUrl = `${protocol}://${host}${req.originalUrl}`;
+        await page.goto(fullUrl, { waitUntil: 'networkidle0' });
         const html = await page.content();
         await browser.close();
         return res.send(html);
