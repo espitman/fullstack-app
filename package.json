@@ -5,7 +5,8 @@
   "scripts": {
     "start:dev": "pnpm -r dev",
     "start:prod": "pnpm --filter @my-fullstack-app/client build && pnpm --filter @my-fullstack-app/api build && pnpm --filter @my-fullstack-app/api serve",
-    "start:api": "pnpm --filter @my-fullstack-app/api build && pnpm --filter @my-fullstack-app/api serve"
+    "start:api": "pnpm --filter @my-fullstack-app/api build && pnpm --filter @my-fullstack-app/api serve",
+    "build": "pnpm --filter @my-fullstack-app/client build && pnpm --filter @my-fullstack-app/api build"
   },
   "private": true,
   "devDependencies": {
