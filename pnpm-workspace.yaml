@@ -3,4 +3,3 @@ packages:
   - 'api'
   - 'api-e2e'
   - 'client'
-  - 'shared-dtos'
