@@ -26,10 +26,14 @@ pkg.name = 'my-fullstack-app';
 pkg.scripts = pkg.scripts || {};
 pkg.scripts.start = 'node api/main.js';
 
-// 5. Write to build/package.json
+// 5. Add tslib to dependencies
+pkg.dependencies = pkg.dependencies || {};
+pkg.dependencies.tslib = "^2.8.1";
+
+// 6. Write to build/package.json
 fs.writeFileSync(buildPkgPath, JSON.stringify(pkg, null, 2));
 
-// 6. Edit build/api/main.js: replace ../../client/dist to ../client
+// 7. Edit build/api/main.js: replace ../../client/dist to ../client
 const mainJsPath = path.join(apiDir, 'main.js');
 if (fs.existsSync(mainJsPath)) {
   let mainJs = fs.readFileSync(mainJsPath, 'utf8');
