@@ -4,7 +4,7 @@
   "private": true,
   "nx": {
     "implicitDependencies": [
-      "@my-fullstack-app/api"
+      "@nerexjs/api"
     ],
     "targets": {
       "e2e": {
@@ -17,8 +17,8 @@
           "passWithNoTests": true
         },
         "dependsOn": [
-          "@my-fullstack-app/api:build",
-          "@my-fullstack-app/api:serve"
+          "@nerexjs/api:build",
+          "@nerexjs/api:serve"
         ]
       }
     }

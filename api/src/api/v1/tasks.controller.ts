@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Param, NotFoundException } from '@nestjs/common';
-import { type TaskDto, type CreateTaskDto } from '@my-fullstack-app/shared-dtos';
+import { type TaskDto, type CreateTaskDto } from '@nerexjs/shared-dtos';
 
 @Controller('api/v1/tasks')
 export class TasksController {

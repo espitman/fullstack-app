@@ -1,13 +1,13 @@
 {
-  "name": "@my-fullstack-app/source",
+  "name": "nerexjs",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "sync": "npx nx sync",
     "start:dev": "pnpm sync && pnpm -r dev",
-    "start:prod": "pnpm sync && pnpm --filter @my-fullstack-app/client build && pnpm --filter @my-fullstack-app/api build && pnpm --filter @my-fullstack-app/api serve",
-    "start:api": "pnpm sync && pnpm --filter @my-fullstack-app/api build && pnpm --filter @my-fullstack-app/api serve",
-    "build": "pnpm sync && pnpm --filter @my-fullstack-app/client build && pnpm --filter @my-fullstack-app/api build"
+    "start:prod": "pnpm sync && pnpm --filter @nerexjs/client build && pnpm --filter @nerexjs/api build && pnpm --filter @nerexjs/api serve",
+    "start:api": "pnpm sync && pnpm --filter @nerexjs/api build && pnpm --filter @nerexjs/api serve",
+    "build": "pnpm sync && pnpm --filter @nerexjs/client build && pnpm --filter @nerexjs/api build"
   },
   "private": true,
   "devDependencies": {

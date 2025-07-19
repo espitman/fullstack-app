@@ -1,5 +1,5 @@
 {
-  "name": "@my-fullstack-app/shared-dtos",
+  "name": "@nerexjs/shared-dtos",
   "version": "0.0.1",
   "private": true,
   "main": "./dist/src/index.js",

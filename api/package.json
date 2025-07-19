@@ -1,5 +1,5 @@
 {
-  "name": "@my-fullstack-app/api",
+  "name": "@nerexjs/api",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -34,15 +34,15 @@
           "build"
         ],
         "options": {
-          "buildTarget": "@my-fullstack-app/api:build",
+          "buildTarget": "@nerexjs/api:build",
           "runBuildTargetDependencies": false
         },
         "configurations": {
           "development": {
-            "buildTarget": "@my-fullstack-app/api:build:development"
+            "buildTarget": "@nerexjs/api:build:development"
           },
           "production": {
-            "buildTarget": "@my-fullstack-app/api:build:production"
+            "buildTarget": "@nerexjs/api:build:production"
           }
         }
       }

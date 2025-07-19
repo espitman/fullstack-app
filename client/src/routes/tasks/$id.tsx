@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useApiQuery } from '../../hook/useApiService';
-import { TaskDto } from '@my-fullstack-app/shared-dtos';
+import { TaskDto } from '@nerexjs/shared-dtos';
 
 export const Route = createFileRoute()({
   component: TaskDetail,

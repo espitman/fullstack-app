@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
-import { type TaskDto, type CreateTaskDto } from '@my-fullstack-app/shared-dtos';
+import { type TaskDto, type CreateTaskDto } from '@nerexjs/shared-dtos';
 import { useApiQuery, useApiMutation } from '../hook/useApiService';
 
 export const Route = createFileRoute()({

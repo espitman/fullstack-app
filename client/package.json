@@ -1,5 +1,5 @@
 {
-  "name": "@my-fullstack-app/client",
+  "name": "@nerexjs/client",
   "version": "0.0.1",
   "private": true,
   "scripts": {
