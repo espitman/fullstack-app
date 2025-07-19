@@ -19,7 +19,7 @@
     "customConditions": ["development"],
     "baseUrl": ".",
     "paths": {
-      "@my-fullstack-app/shared-dtos": ["./shared-dtos/src/index.ts"]
+      "@my-fullstack-app/shared-dtos": ["./pkg/shared-dtos/src/index.ts"]
     }
   }
 }

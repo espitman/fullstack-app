@@ -7,7 +7,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@my-fullstack-app/shared-dtos': join(__dirname, '../../dist/shared-dtos/src/index.js'),
+      '@my-fullstack-app/shared-dtos': join(__dirname, '../../pkg/shared-dtos/dist/src/index.js'),
     },
     extensions: ['.ts', '.js', '.json'],
   },

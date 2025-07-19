@@ -27,10 +27,11 @@ my-fullstack-app/
 │   ├── package.json        # Frontend-specific dependencies and scripts
 │   └── ...                 # Other frontend config files (tsconfig, vite, etc.)
 │
-├── shared-dtos/            # Shared TypeScript DTOs and types for API contracts
-│   ├── src/                # DTO and type source files
-│   ├── package.json        # Shared DTO package config
-│   └── ...                 # Other config files (tsconfig, etc.)
+├── pkg/
+│   └── shared-dtos/        # Shared TypeScript DTOs and types for API contracts
+│       ├── src/                # DTO and type source files
+│       ├── package.json        # Shared DTO package config
+│       └── ...                 # Other config files (tsconfig, etc.)
 │
 ├── build/                  # Final distributable output (after build)
 │   ├── api/                # Built backend ready for deployment
@@ -52,7 +53,7 @@ my-fullstack-app/
 
 - `api/` - All backend (NestJS) code, configs, and build output.
 - `client/` - All frontend (React) code, configs, and build output.
-- `shared-dtos/` -**Shared Data Transfer Objects (DTOs) and TypeScript types** used for type-safe communication between backend and frontend.This ensures both sides of your app use the exact same data contracts, reducing bugs and improving maintainability.
+- `pkg/shared-dtos/` - **Shared Data Transfer Objects (DTOs) and TypeScript types** used for type-safe communication between backend and frontend. This ensures both sides of your app use the exact same data contracts, reducing bugs and improving maintainability.
 - `build/` - The final, ready-to-deploy output after running `make build`.
 - `scripts/` - Utility scripts for build and deployment automation.
 - `Makefile` - Main build and automation entrypoint.

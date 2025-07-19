@@ -13,7 +13,7 @@
       "path": "./client"
     },
     {
-      "path": "./shared-dtos"
+      "path": "./pkg/shared-dtos"
     }
   ]
 }
