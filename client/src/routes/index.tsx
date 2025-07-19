@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
-import { TaskDto, CreateTaskDto } from '@my-fullstack-app/shared-dtos';
+import { type TaskDto, type CreateTaskDto } from '@my-fullstack-app/shared-dtos';
 import { useApiQuery, useApiMutation } from '../hook/useApiService';
 
 export const Route = createFileRoute()({
@@ -11,6 +11,7 @@ function TaskList() {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
+  const [priority, setPriority] = useState<'low' | 'med' | 'high'>('med');
 
   // Query for tasks
   const {
@@ -35,7 +36,7 @@ function TaskList() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    createTaskMutation.mutate({ title, ...(date ? { date } : {}), ...(description ? { description } : {}) });
+    createTaskMutation.mutate({ title, ...(date ? { date } : {}), ...(description ? { description } : {}), priority });
   };
 
   return (
@@ -64,6 +65,17 @@ function TaskList() {
           placeholder="Description (optional)"
           className="p-2 w-full mt-2 border rounded"
         />
+        <select
+          value={priority}
+          onChange={e => setPriority(e.target.value as 'low' | 'med' | 'high')}
+          className="p-2 mt-2 border rounded"
+          required
+        >
+          <option value="low">Low</option>
+          <option value="med">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <br/>
         <button type="submit" disabled={createTaskMutation.status === 'pending'} className="p-2 mt-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50">
           Add Task
         </button>
@@ -85,6 +97,11 @@ function TaskList() {
               >
                 {task.title}
               </Link>
+              {task.priority && (
+                <span className="ml-2 text-xs px-2 py-1 rounded bg-gray-200">
+                  {task.priority.toUpperCase()}
+                </span>
+              )}
               {task.date && (
                 <span className="text-gray-500 text-xs ml-2">
                   {new Date(task.date).toLocaleDateString()}

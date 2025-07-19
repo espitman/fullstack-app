@@ -30,6 +30,16 @@
     "eslint.config.cjs",
     "eslint.config.mjs"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
-  "references": []
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "../pkg/shared-dtos/src/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../pkg/shared-dtos/tsconfig.lib.json"
+    }
+  ]
 }

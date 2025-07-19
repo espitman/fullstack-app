@@ -1,4 +1,6 @@
-import { IsNotEmpty, IsString, MinLength, IsOptional, IsISO8601 } from 'class-validator';
+import { IsNotEmpty, IsString, MinLength, IsOptional, IsISO8601, IsIn } from 'class-validator';
+
+export type Priority = 'low' | 'med' | 'high';
 
 export class TaskDto {
   id!: number;
@@ -6,6 +8,9 @@ export class TaskDto {
   isDone!: boolean;
   date!: string; // ISO8601 string
   description?: string;
+  @IsOptional()
+  @IsIn(['low', 'med', 'high'])
+  priority?: Priority;
 }
 
 export class CreateTaskDto {
@@ -21,4 +26,8 @@ export class CreateTaskDto {
   @IsOptional()
   @IsString()
   description?: string;
+
+  @IsOptional()
+  @IsIn(['low', 'med', 'high'])
+  priority?: Priority;
 } 

@@ -20,6 +20,9 @@ function TaskDetail() {
       <h2 className="text-2xl font-bold mb-4">{task.title}</h2>
       <p className="mb-2"><span className="font-semibold">Description:</span> {task.description || <span className="text-gray-400">No description</span>}</p>
       <p className="text-sm text-gray-600"><span className="font-semibold">Date:</span> {task.date ? new Date(task.date).toLocaleDateString() : <span className="text-gray-400">No date</span>}</p>
+      {task.priority && (
+        <p className="text-sm text-gray-600"><span className="font-semibold">Priority:</span> {task.priority}</p>
+      )}
     </div>
   );
 }

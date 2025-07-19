@@ -4,8 +4,8 @@ import { type TaskDto, type CreateTaskDto } from '@my-fullstack-app/shared-dtos'
 @Controller('api/v1/tasks')
 export class TasksController {
   private readonly tasks: TaskDto[] = [
-    { id: 1, title: 'Setup the monorepo', isDone: true, date: new Date().toISOString(), description: 'Initialize the monorepo structure.' },
-    { id: 2, title: 'Create the frontend', isDone: true, date: new Date().toISOString(), description: 'Set up the React frontend.' },
+    { id: 1, title: 'Setup the monorepo', isDone: true, date: new Date().toISOString(), description: 'Initialize the monorepo structure.', priority: 'low' },
+    { id: 2, title: 'Create the frontend', isDone: true, date: new Date().toISOString(), description: 'Set up the React frontend.', priority: 'med' },
   ];
 
   @Get()
@@ -22,6 +22,7 @@ export class TasksController {
       isDone: false,
       date: createTaskDto.date || new Date().toISOString(),
       description: createTaskDto.description,
+      priority: createTaskDto.priority || 'med',
     };
     this.tasks.push(newTask);
     return newTask;
