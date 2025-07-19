@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start:dev": "pnpm -r dev",
-    "start:prod": "pnpm --filter @my-fullstack-app/client build && pnpm --filter @my-fullstack-app/api build && pnpm --filter @my-fullstack-app/api serve",
-    "start:api": "pnpm --filter @my-fullstack-app/api build && pnpm --filter @my-fullstack-app/api serve",
-    "build": "pnpm --filter @my-fullstack-app/client build && pnpm --filter @my-fullstack-app/api build"
+    "sync": "npx nx sync",
+    "start:dev": "pnpm sync && pnpm -r dev",
+    "start:prod": "pnpm sync && pnpm --filter @my-fullstack-app/client build && pnpm --filter @my-fullstack-app/api build && pnpm --filter @my-fullstack-app/api serve",
+    "start:api": "pnpm sync && pnpm --filter @my-fullstack-app/api build && pnpm --filter @my-fullstack-app/api serve",
+    "build": "pnpm sync && pnpm --filter @my-fullstack-app/client build && pnpm --filter @my-fullstack-app/api build"
   },
   "private": true,
   "devDependencies": {
