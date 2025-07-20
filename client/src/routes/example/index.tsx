@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { type TaskDto, type CreateTaskDto } from '@nerexjs/shared-dtos';
-import { useApiQuery, useApiMutation } from '../hook/useApiService';
+import { useApiQuery, useApiMutation } from '../../hook/useApiService';
 
 export const Route = createFileRoute()({
   component: TaskList,
@@ -91,7 +91,7 @@ function TaskList() {
               className={`mb-3 ${task.isDone ? 'line-through text-gray-400' : ''}`}
             >
               <Link
-                to="/tasks/$id"
+                to="/example/tasks/$id"
                 params={{ id: String(task.id) }}
                 className="text-blue-700 underline cursor-pointer hover:text-blue-900"
               >
@@ -113,7 +113,7 @@ function TaskList() {
       )}
       {/* Move the About link to the bottom of the page */}
       <div className="mt-8 text-center">
-        <Link to="/about/project" className="text-blue-600 hover:underline">About the Project</Link>
+        <Link to="/example/about" className="text-blue-600 hover:underline">About the Project</Link>
       </div>
     </div>
   );

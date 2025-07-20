@@ -2,9 +2,9 @@ import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createRouter, createRootRoute, createRoute, Outlet } from '@tanstack/react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import TaskList from './routes/index';
-import TaskDetail from './routes/tasks/$id';
-import AboutProject from './routes/about/project';
+import TaskList from './routes/example/index';
+import TaskDetail from './routes/example/tasks/$id';
+import AboutProject from './routes/example/about/project';
 import './styles.css';
 
 const queryClient = new QueryClient();
@@ -15,19 +15,19 @@ const rootRoute = createRootRoute({
 
 const taskListRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/',
+  path: '/example',
   component: TaskList,
 });
 
 const taskDetailRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/tasks/$id',
+  path: '/example/tasks/$id',
   component: TaskDetail,
 });
 
 const aboutProjectRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/about/project',
+  path: '/example/about',
   component: AboutProject,
 });
 
