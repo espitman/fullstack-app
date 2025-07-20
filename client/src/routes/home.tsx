@@ -1,12 +1,16 @@
-import nerexjsImg from '../assets/images/nerexjs.jpg';
+import Header from '../component/home/Header';
+import Features from '../component/home/Features';
+import Benefits from '../component/home/Benefits';
+import PromoSection from '../component/home/PromoSection';
+import Footer from '../component/home/Footer';
 
 const Home = () => (
-  <div className="min-h-screen bg-black flex items-center justify-center">
-    <img
-      src={nerexjsImg}
-      alt="NerexJS"
-      className="w-[512px] h-[512px] rounded-2xl shadow-2xl object-cover"
-    />
+  <div className="flex flex-col min-h-screen bg-white">
+    <Header />
+    <Features />
+    <Benefits />
+    <PromoSection />
+    <Footer />
   </div>
 );
 
