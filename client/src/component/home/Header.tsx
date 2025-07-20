@@ -6,9 +6,11 @@ const Header = () => (
         <ul className="flex gap-8 text-sm font-medium">
           <li><a href="#" className="hover:text-yellow-400">Documentation</a></li>
           <li><a href="#" className="hover:text-yellow-400">Resources</a></li>
+          <li>
+            <a href="https://github.com/espitman/nerexjs" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400">GitHub</a>
+          </li>
         </ul>
         <div className="flex gap-4">
-          <a href="#" className="hover:text-yellow-400">GitHub</a>
           <a href="#" className="hover:text-yellow-400">LinkedIn</a>
         </div>
       </nav>
@@ -17,7 +19,14 @@ const Header = () => (
         <p className="text-lg md:text-xl mb-8 max-w-xl">A modern fullstack monorepo framework based on NestJS (backend) and React (frontend), designed for scalable, maintainable, and production-ready applications.</p>
         <div className="flex gap-4">
           <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-2 rounded-full font-semibold">Documentation</button>
-          <button className="border border-white hover:bg-white hover:text-black text-white px-6 py-2 rounded-full font-semibold">Source code</button>
+          <a
+            href="https://github.com/espitman/nerexjs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-white hover:bg-white hover:text-black text-white px-6 py-2 rounded-full font-semibold inline-flex items-center justify-center"
+          >
+            Source code
+          </a>
         </div>
       </div>
     </div>
