@@ -5,12 +5,19 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import TaskList from './routes/example/index';
 import TaskDetail from './routes/example/tasks/$id';
 import AboutProject from './routes/example/about/project';
+import Home from './routes/home';
 import './styles.css';
 
 const queryClient = new QueryClient();
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
+});
+
+const homeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/',
+  component: Home,
 });
 
 const taskListRoute = createRoute({
@@ -31,7 +38,12 @@ const aboutProjectRoute = createRoute({
   component: AboutProject,
 });
 
-const routeTree = rootRoute.addChildren([taskListRoute, taskDetailRoute, aboutProjectRoute]);
+const routeTree = rootRoute.addChildren([
+  homeRoute,
+  taskListRoute,
+  taskDetailRoute,
+  aboutProjectRoute
+]);
 const router = createRouter({ routeTree });
 
 declare module '@tanstack/react-router' {
