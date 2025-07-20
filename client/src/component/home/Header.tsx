@@ -5,7 +5,6 @@ const Header = () => (
         <div className="text-3xl font-bold">NEREXJS</div>
         <ul className="flex gap-8 text-sm font-medium">
           <li><a href="#" className="hover:text-yellow-400">Documentation</a></li>
-          <li><a href="#" className="hover:text-yellow-400">Enterprise</a></li>
           <li><a href="#" className="hover:text-yellow-400">Resources</a></li>
         </ul>
         <div className="flex gap-4">
