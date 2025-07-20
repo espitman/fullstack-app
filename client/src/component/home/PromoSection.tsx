@@ -1,4 +1,4 @@
-import nerexjsImg from '../../assets/images/nerexjs.jpg';
+import nerexjsImg from '../../assets/images/nerexjs.png';
 
 const PromoSection = () => (
   <section className="bg-yellow-400 py-12">
