@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const StickyNav = () => (
-  <div className="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur flex items-center justify-between px-8 py-3 shadow transition-all">
+  <div className="hidden md:flex fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur items-center justify-between px-8 py-3 shadow transition-all">
     <div className="text-2xl font-bold text-yellow-400">NEREXJS</div>
     <ul className="flex gap-8 text-sm font-medium">
       <li><a href="#" className="hover:text-yellow-400 text-white">Documentation</a></li>
@@ -46,7 +46,7 @@ const Header = () => {
       <div className="absolute inset-0 bg-black/40 pointer-events-none" />
       {showSticky && <StickyNav />}
       <div className="relative container mx-auto px-6 pt-8 flex flex-col min-h-[420px]">
-        <nav className="flex items-center justify-between mb-12">
+        <nav className="hidden md:flex items-center justify-between mb-12">
           <div className="text-3xl font-bold">NEREXJS</div>
           <ul className="flex gap-8 text-sm font-medium">
             <li><a href="#" className="hover:text-yellow-400">Documentation</a></li>
