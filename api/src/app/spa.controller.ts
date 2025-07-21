@@ -49,7 +49,7 @@ export class SpaController {
           html = await page.content();
           await browser.close();
           if (html && html.includes('<html')) {
-            const ttl = this.configService.get<number>('SSR_CACHE_TTL', 300); // default 300 seconds
+            const ttl = this.configService.get<number>('SSR_CACHE_TTL', 300000); 
             await this.cacheManager.set(cacheKey, html, ttl);
           }
         } catch (err) {
